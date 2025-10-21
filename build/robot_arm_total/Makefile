@@ -137,14 +137,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/paula/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/paula/catkin_ws/build/CMakeFiles /home/paula/catkin_ws/build/validation_pkg/CMakeFiles/progress.marks
-	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 validation_pkg/all
+	cd /home/paula/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/paula/catkin_ws/build/CMakeFiles /home/paula/catkin_ws/build/robot_arm_total/CMakeFiles/progress.marks
+	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_arm_total/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/paula/catkin_ws/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 validation_pkg/clean
+	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_arm_total/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,18 +154,33 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 validation_pkg/preinstall
+	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_arm_total/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 validation_pkg/preinstall
+	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_arm_total/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 	cd /home/paula/catkin_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/rule:
+	cd /home/paula/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/rule
+.PHONY : robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/rule
+
+# Convenience name for target.
+_catkin_empty_exported_target: robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/rule
+
+.PHONY : _catkin_empty_exported_target
+
+# fast build rule for target.
+_catkin_empty_exported_target/fast:
+	cd /home/paula/catkin_ws/build && $(MAKE) -f robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/build.make robot_arm_total/CMakeFiles/_catkin_empty_exported_target.dir/build
+.PHONY : _catkin_empty_exported_target/fast
 
 # Help Target
 help:
@@ -180,6 +195,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... _catkin_empty_exported_target"
 .PHONY : help
 
 

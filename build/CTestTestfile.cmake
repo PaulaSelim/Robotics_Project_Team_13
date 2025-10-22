@@ -5,5 +5,5 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
-subdirs("robot_arm_total")
 subdirs("validation_pkg")
+subdirs("my_robot_gazebo")

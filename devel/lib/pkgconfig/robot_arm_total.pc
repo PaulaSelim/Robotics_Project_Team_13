@@ -1,8 +1,0 @@
-prefix=/home/paula/catkin_ws/devel
-
-Name: robot_arm_total
-Description: Description of robot_arm_total
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

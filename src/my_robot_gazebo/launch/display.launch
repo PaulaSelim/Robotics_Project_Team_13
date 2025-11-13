@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find my_robot_gazebo)/urdf/robot.urdf'" />
+
+  <!-- Publish joint states -->
+  <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+
+  <!-- Publish TFs from robot_description -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+  <!-- Start RViz -->
+  <node pkg="rviz" type="rviz" name="rviz" />
+</launch>

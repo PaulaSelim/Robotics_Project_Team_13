@@ -1,2 +1,2 @@
-validation_pkg
+my_robot_gazebo:validation_pkg
 -DCATKIN_DEVEL_PREFIX=/home/paula/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/paula/catkin_ws/install -G Unix Makefiles

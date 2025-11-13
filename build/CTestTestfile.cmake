@@ -6,3 +6,4 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("validation_pkg")
+subdirs("my_robot_gazebo")

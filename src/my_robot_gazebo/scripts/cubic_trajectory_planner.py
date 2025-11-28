@@ -28,19 +28,29 @@ def import_ik_functions():
     """Import IK functions without initializing ROS node or running interactive mode"""
     try:
         import importlib.util
+        import io
+        
         spec = importlib.util.spec_from_file_location("ik_module", 
             os.path.join(os.path.dirname(__file__), "inverseKinematics.py"))
         ik_module = importlib.util.module_from_spec(spec) # type: ignore
         
-        # Temporarily disable node initialization by monkey-patching rospy.init_node
+        # Temporarily disable node initialization and redirect stdin to auto-quit
         import rospy as rospy_temp
         original_init_node = rospy_temp.init_node
+        original_stdin = sys.stdin
+        
+        # Monkey-patch to prevent ROS node initialization
         rospy_temp.init_node = lambda *args, **kwargs: None
         
-        spec.loader.exec_module(ik_module) # type: ignore
+        # Redirect stdin to provide 'quit' input immediately
+        sys.stdin = io.StringIO('quit\n')
         
-        # Restore original function
-        rospy_temp.init_node = original_init_node
+        try:
+            spec.loader.exec_module(ik_module) # type: ignore
+        finally:
+            # Restore original functions and stdin
+            rospy_temp.init_node = original_init_node
+            sys.stdin = original_stdin
         
         return ik_module.inverse_kinematics, ik_module.forward_kinematics_check
     except Exception as e:

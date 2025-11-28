@@ -55,9 +55,9 @@ while 1 and not rospy.is_shutdown():
    
     if flag == 1:
         
-        joint_1 = Float64(90 * (math.pi / 180))
+        joint_1 = Float64(0 * (math.pi / 180))
         joint_2 = Float64(0 * (math.pi / 180))
-        joint_3 = Float64(45 * (math.pi / 180))
+        joint_3 = Float64(0 * (math.pi / 180))
         joint_4 = Float64(0 * (math.pi / 180)) #this servo will not be used
         joint_5 = Float64(0 * (math.pi / 180))
 

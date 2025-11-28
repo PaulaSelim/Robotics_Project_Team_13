@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: my_robot_gazebo
+    relative_path: urdf/robot.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/R5_DOF_Robot_Assembly.srdf
+  CONFIG:
+    author_name: Paula Selim
+    author_email: h.pola2003@gmail.com
+    generated_timestamp: 1762972926

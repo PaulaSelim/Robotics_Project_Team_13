@@ -185,14 +185,14 @@ class CubicPolynomialTrajectory:
 class CubicTrajectoryPlannerNode:
     """
     ROS node for cubic polynomial trajectory planning
-    Uses the same publisher structure as milestone_2.py
+    Controls both Gazebo simulation and Arduino hardware via ROS
     """
     
     def __init__(self):
         # Initialize ROS node
         rospy.init_node('cubic_trajectory_planner', anonymous=False)
         
-        # Publishers for joint commands (same as milestone_2.py)
+        # Publishers for joint commands (both Gazebo AND Arduino will receive these)
         self.pub1 = rospy.Publisher('/Joint_1/command', Float64, queue_size=10)
         self.pub2 = rospy.Publisher('/Joint_2/command', Float64, queue_size=10)
         self.pub3 = rospy.Publisher('/Joint_3/command', Float64, queue_size=10)
@@ -215,14 +215,14 @@ class CubicTrajectoryPlannerNode:
         rospy.sleep(1.0)
         
         rospy.loginfo("✅ Cubic Trajectory Planner Node initialized")
-        rospy.loginfo("Publishers connected - ready to move robot!")
+        rospy.loginfo("✅ Arduino will receive commands via rosserial")
         
         self.print_usage_instructions()
     
     def print_usage_instructions(self):
         """Print usage instructions"""
         print("=" * 70)
-        print("         CUBIC POLYNOMIAL TRAJECTORY PLANNER")
+        print("         CUBIC POLYNOMIAL TRAJECTORY PLANNER (ROS)")
         print("=" * 70)
         print("This node creates smooth trajectories between two 3D positions")
         print("using cubic polynomials for joint-space motion planning.")
@@ -230,6 +230,7 @@ class CubicTrajectoryPlannerNode:
         print("🤖 Robot Configuration: 4-DOF (Joint_4 not used)")
         print("📐 Uses inverse kinematics for position-to-joint conversion")
         print("📈 Generates cubic polynomial trajectories for smooth motion")
+        print("🔌 Arduino control via rosserial (run serial_node.py separately)")
         print("=" * 70)
     
     def get_user_input(self):
@@ -319,20 +320,19 @@ class CubicTrajectoryPlannerNode:
     
     def publish_joint_commands(self, joint_positions):
         """
-        Publish joint commands using the same structure as milestone_2.py
+        Publish joint commands to ROS topics
+        Both Gazebo and Arduino (via rosserial) will receive these
         
         Args:
             joint_positions: List of 5 joint angles [rad]
         """
         
-        # Create Float64 messages (same as milestone_2.py)
         joint_1 = Float64(joint_positions[0])
         joint_2 = Float64(joint_positions[1]) 
         joint_3 = Float64(joint_positions[2])
-        joint_4 = Float64(joint_positions[3])  # This servo will not be used
+        joint_4 = Float64(joint_positions[3])
         joint_5 = Float64(joint_positions[4])
         
-        # Publish commands
         self.pub1.publish(joint_1)
         self.pub2.publish(joint_2)
         self.pub3.publish(joint_3)
@@ -490,13 +490,14 @@ def main():
     """Main function"""
     try:
         print("=" * 70)
-        print("       CUBIC POLYNOMIAL TRAJECTORY PLANNER")
+        print("       CUBIC POLYNOMIAL TRAJECTORY PLANNER (ROS)")
         print("=" * 70)
         print("This node creates smooth joint-space trajectories using cubic polynomials.")
         print()
         print("⚠️  REQUIREMENTS:")
-        print("1. Gazebo simulation must be running")
-        print("2. Robot controllers must be loaded")
+        print("1. Gazebo simulation running (optional)")
+        print("2. Arduino with rosserial running:")
+        print("   rosrun rosserial_python serial_node.py /dev/ttyACM1")
         print("3. inverseKinematics.py must be available")
         print()
         

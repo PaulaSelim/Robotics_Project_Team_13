@@ -1,9 +1,0 @@
-# CMake generated Testfile for 
-# Source directory: /home/paula/catkin_ws/src
-# Build directory: /home/paula/catkin_ws/build
-# 
-# This file includes the relevant testing commands required for 
-# testing this directory and lists subdirectories to be tested as well.
-subdirs("gtest")
-subdirs("validation_pkg")
-subdirs("my_robot_gazebo")

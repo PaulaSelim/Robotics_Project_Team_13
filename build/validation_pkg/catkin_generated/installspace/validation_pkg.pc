@@ -1,8 +1,0 @@
-prefix=/home/paula/catkin_ws/install
-
-Name: validation_pkg
-Description: Description of validation_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

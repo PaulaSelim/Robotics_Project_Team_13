@@ -26,7 +26,7 @@ from std_msgs.msg import Float64
 import math
 
 try:
-    import pigpio
+    import pigpio # type: ignore
     PIGPIO_AVAILABLE = True
 except ImportError:
     PIGPIO_AVAILABLE = False
@@ -71,7 +71,7 @@ class PiServoController:
             return
         
         try:
-            self.pi = pigpio.pi()
+            self.pi = pigpio.pi() # type: ignore
             if not self.pi.connected:
                 rospy.logerr("Failed to connect to pigpio daemon!")
                 rospy.logerr("Start with: sudo pigpiod")
@@ -83,10 +83,10 @@ class PiServoController:
             return
         
         # Set servo mode on GPIO pins
-        self.pi.set_mode(self.PIN_JOINT1, pigpio.OUTPUT)
-        self.pi.set_mode(self.PIN_JOINT2, pigpio.OUTPUT)
-        self.pi.set_mode(self.PIN_JOINT3, pigpio.OUTPUT)
-        self.pi.set_mode(self.PIN_JOINT5, pigpio.OUTPUT)
+        self.pi.set_mode(self.PIN_JOINT1, pigpio.OUTPUT) # type: ignore
+        self.pi.set_mode(self.PIN_JOINT2, pigpio.OUTPUT) # type: ignore
+        self.pi.set_mode(self.PIN_JOINT3, pigpio.OUTPUT) # type: ignore
+        self.pi.set_mode(self.PIN_JOINT5, pigpio.OUTPUT) # type: ignore
         
         # Initialize servos to center position
         self.set_servo_pulse(self.PIN_JOINT1, self.SERVO_CENTER)
